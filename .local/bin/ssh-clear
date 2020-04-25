@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]
+then
+    echo "Must specify hostname or IP to clear"
+    exit 2
+fi
+
+HOST=$1
+sed -i "/^${HOST}/d" ~/.ssh/known_hosts
+
+echo "Cleared ${HOST} from known_hosts"
