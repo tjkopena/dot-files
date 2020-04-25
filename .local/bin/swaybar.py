@@ -4,6 +4,7 @@ from datetime import datetime
 from time import sleep
 import sys
 from types import SimpleNamespace as _
+from math import floor
 
 import gi
 gi.require_version('Notify', '0.7')
@@ -39,7 +40,7 @@ def status():
     }.get(energy_state, '⚡')
 
     bs = len(battery_states)-1
-    while bs > 0 and energy_pct <= battery_states[bs-1].threshold:
+    while bs > 0 and floor(energy_pct) <= battery_states[bs-1].threshold:
         bs -= 1
 
     if energy_state == 'discharging' and bs < battery_state:
