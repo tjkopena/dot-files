@@ -1,0 +1,5 @@
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[core]
+	editor = emacsclient -nw -c -a \"\"
+	excludesfile = /home/joe/.gitignore
