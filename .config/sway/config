@@ -1,0 +1,339 @@
+#-----------------------------------------------------------------------
+#-----------------------------------------------------------------------
+# sway Configuration
+# tjkopena@gmail.com
+#
+# Copy to ~/.config/sway/config and edit to your liking.
+# Read `man 5 sway` for a complete reference.
+#
+#-----------------------------------------------------------------------
+#-----------------------------------------------------------------------
+
+xwayland enable
+
+#-----------------------------------------------------------------------
+# Programs
+#
+
+# Preferred Programs
+set $term         gnome-terminal
+set $browser      firefox-developer-edition
+
+# Application Launcher
+# Note: it's recommended that you pass the final command to sway
+set $menu bemenu-run \
+  --prompt 'Run:' \
+  --ignorecase \
+  --fn 'Source Code Pro Regular 12' \
+  --fb '#323232' --ff '#f6f6f6' \
+  --tb '#323232' --tf '#f6f6f6' \
+  --nb '#000000' --nf '#595959' \
+  --hb '#285577' --hf '#f5f7f9'
+
+
+#-----------------------------------------------------------------------
+# Appearance
+#
+
+font Source Code Pro Regular 10
+
+default_border pixel
+default_floating_border normal
+smart_borders on
+titlebar_padding 1
+
+# Status Bar
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    position top
+
+    #font Source Code Pro Regular 10
+    font pango:DejaVu Sans Mono 10
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    status_command /home/joe/.local/bin/swaybar.py
+    #status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    #status_command /home/joe/.local/bin/swaybar-status
+
+    colors {
+        statusline #ffffff
+        background #323232
+        inactive_workspace #32323200 #32323200 #5c5c5c
+    }
+}
+
+
+#-----------------------------------------------------------------------
+# Idle Behavior
+#
+
+# Default
+# Turn screens off after 5 minutes;
+# Lock the screen after 30 minutes;
+# On resume turn the screens back on
+exec swayidle -w \
+  timeout 300 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#  timeout 1800 'loginctl lock-session' \
+  before-sleep 'swaylock --daemonize'
+#  lock 'swaylock --daemonize'
+
+
+#-----------------------------------------------------------------------
+# Outputs
+#
+
+# Default Wallpaper
+# output * background /home/tom/media/images/blue-marble-west.jpg fit #000000
+
+# Example configuration:
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# Get the names of your outputs by running: swaymsg -t get_outputs
+
+output eDP-1 scale 1.6 pos 0,0
+output DP-3  scale 1.2 transform 90
+output DP-5  scale 1.2
+
+
+#-----------------------------------------------------------------------
+# Input Configuration
+# Get input names by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+#
+
+input type:keyboard {
+  xkb_layout us
+  xkb_variant dvorak
+#  xkb_options ctrl:nocaps
+}
+
+input 1:1:AT_Translated_Set_2_keyboard {
+  xkb_layout alice
+}
+
+# Use Kinesis keyboard's hardware Dvorak mapping
+#   - Commented out because the console can't readily be made to make the same distinction
+# input "10730:258:Kinesis_Advantage2_Keyboard" {
+#   xkb_layout us
+#   xkb_variant ""
+#   xkb_options ctrl:nocaps
+# }
+
+input type:touchpad {
+  events disabled
+}
+
+#set $trackball "*"
+#bindsym --input-device=$trackball --whole-window BTN_SIDE seat - cursor press BTN_MIDDLE
+#bindsym --input-device=$trackball --whole-window --release BTN_SIDE seat - cursor release BTN_MIDDLE
+
+
+#-----------------------------------------------------------------------
+# System Configuration
+#
+
+# Backlight
+# Minimum backlight of 1, cannot go to 0
+exec light -N 1
+
+
+#-----------------------------------------------------------------------
+# swaynag
+
+#swaynag_command swaynagmode
+#set $nag exec swaynagmode
+#mode "nag" {
+#  bindsym {
+#    Ctrl+d    mode "default"
+#
+#    Ctrl+c    $nag --exit
+#    q         $nag --exit
+#    Escape    $nag --exit
+#
+#    Return    $nag --confirm
+#
+#    Tab       $nag --select prev
+#    Shift+Tab $nag --select next
+#
+#    Left      $nag --select next
+#    Right     $nag --select prev
+#
+#    Up        $nag --select next
+#    Down      $nag --select prev
+#  }
+#}
+
+
+#-----------------------------------------------------------------------
+# Key Bindings
+#
+
+set $code Ctrl+Alt
+
+# Exit sway (logs you out of your Wayland session)
+set $exitcmd exec swaynag -t warning -m 'Exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+bindsym $code+Delete $exitcmd
+
+# Lock screen
+# bindsym XF86ScreenSaver exec loginctl lock-session
+bindsym $code+Shift+F12 exec loginctl lock-session
+
+# Start a terminal or browser
+bindsym $code+Return exec $term
+bindsym $code+Shift+Return exec $browser
+
+# Kill focused window
+bindsym Alt+F4 kill
+
+# Start your launcher
+bindsym $code+Backspace exec $menu
+
+# Drag windows by holding Alt and left mouse button
+# Resize windows with Alt and right mouse button
+floating_modifier Alt normal
+
+# Reload the sway configuration file
+bindsym $code+Shift+Delete reload
+
+# Volume
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%
+
+# Microphone
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Backlight
+bindsym XF86MonBrightnessDown exec light -U 10
+bindsym XF86MonBrightnessUp exec light -A 10
+
+# Notifications
+bindsym $code+Space exec makoctl dismiss
+bindsym $code+Shift+Space exec makoctl invoke
+
+
+# Navigation
+
+## Move focus
+bindsym $code+Left    focus left
+bindsym $code+Right   focus right
+bindsym $code+Up      focus up
+bindsym $code+Down    focus down
+
+bindsym $code+p       focus parent
+bindsym $code+Shift+p focus child
+
+## Switch to specific workspace
+bindsym $code+0 workspace 0
+bindsym $code+9 workspace 9
+bindsym $code+8 workspace 8
+bindsym $code+7 workspace 7
+
+## Move focused container to workspace
+bindsym $code+Shift+0 move container to workspace 0
+bindsym $code+Shift+9 move container to workspace 9
+bindsym $code+Shift+8 move container to workspace 8
+bindsym $code+Shift+7 move container to workspace 7
+
+## Move workspaces on monitors
+bindsym $code+Shift+Left  workspace prev_on_output
+bindsym $code+Shift+Right workspace next_on_output
+bindsym Alt+Tab         workspace back_and_forth
+
+## Move focus around screens
+bindsym Alt+Shift+Left  focus output left
+bindsym Alt+Shift+Right focus output right
+bindsym Alt+Shift+Up    focus output up
+bindsym Alt+Shift+Down  focus output down
+
+# Screenshots
+bindsym Print exec swayshot
+bindsym Ctrl+Print exec swayshot window
+bindsym Ctrl+Shift+Print exec swayshot region
+
+# Layout
+
+## Container structure
+bindsym $code+Slash       layout toggle split
+bindsym $code+Shift+Slash layout toggle tabbed stacking split
+bindsym $code+Backslash       splitv
+bindsym $code+Shift+Backslash splith
+
+## Make the current focus fullscreen
+bindsym $code+f fullscreen
+
+## Toggle the current focus between tiling and floating mode
+bindsym $code+Shift+f floating toggle
+
+## Swap focus between the tiling area and the floating area
+bindsym $code+l focus mode_toggle
+
+#
+# Scratchpad:
+#
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
+#
+# Move the currently focused window to the scratchpad
+# bindsym $mod+Shift+minus move scratchpad
+#
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+# bindsym $mod+minus scratchpad show
+
+## Move focused window
+mode "move" {
+  ## Move focused window on screen
+  bindsym Left  move left  20
+  bindsym Right move right 20
+  bindsym Up    move up    20
+  bindsym Down  move down  20
+
+  bindsym Shift+Left  move container to workspace left
+  bindsym Shift+Right move container to workspace right
+  bindsym Shift+Up    move container to workspace up
+  bindsym Shift+Down  move container to workspace down
+
+  ## Move focused workspace to other monitor
+  bindsym Alt+Left  move workspace to output left
+  bindsym Alt+Right move workspace to output right
+  bindsym Alt+Up    move workspace to output up
+  bindsym Alt+Down  move workspace to output down
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $code+m mode "move"
+
+# Resize focused window
+mode "resize" {
+  bindsym Left  resize shrink width  20
+  bindsym Down  resize grow   height 20
+  bindsym Up    resize shrink height 20
+  bindsym Right resize grow   width  20
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $code+r mode "resize"
+
+
+#-----------------------------------------------------------------------
+# App-Specific Settings
+#
+
+# Don't show the screensaver when Firefox is fullscreen
+for_window [app_id="firefox"] inhibit_idle fullscreen
+
+# Float image previews
+for_window [app_id="imv"] floating enable
+
+
+#-----------------------------------------------------------------------
+# Startup
+#
+
+exec "systemctl --user import-environment; systemctl --user start sway-session.target"
+
+exec "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
