@@ -1,0 +1,15 @@
+partial alphanumeric_keys
+xkb_symbols "basic" {
+  name[Group1]= "Alice (Dvorak)";
+};
+
+partial alphanumeric_keys
+xkb_symbols "dvorak" {
+  include "us(dvorak)"
+  replace key <HOME> { [ Prior ] };
+  replace key <END> { [ Next ] };
+  replace key <PGUP> { [ Home ] };
+  replace key <PGDN> { [ End ] };
+  replace key <CAPS> { [ Control_L ] };
+  modifier_map Control { <CAPS> };
+};
