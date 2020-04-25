@@ -1,0 +1,94 @@
+#!bash
+
+if [ "$#" -le 1 ]
+then
+    echo "No images specified"
+    exit -1
+fi
+
+list=$*
+
+ref=`echo "$list" | md5sum | cut -d ' ' -f 1`
+
+tmpfile="/tmp/gallery-$ref.html"
+date=`date -R`
+
+rep=
+if [ -f "$tmpfile" ]
+then
+    rep="true"
+fi
+
+sym="+"
+
+cat - > $tmpfile <<EOF
+<html>
+<head>
+<title>Gallery - $date</title>
+<style>
+.cc {
+  width: 1.5em;
+  margin: 0 auto;
+	background-color: #7892c2;
+	border: 1px solid #4e6096;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 66%;
+	padding: 1px 0;
+	text-decoration: none;
+  user-select: none;
+}
+.cc:hover {
+	background-color: #476e9e;
+}
+
+div.thumbnail {
+  display: inline-block;
+  margin: 16px;
+  text-align:center;
+  font-size:66%;
+}
+</style>
+<script>
+function copy(id, fn) {
+  console.log("Copied " + fn);
+  document.getElementById(id).innerHTML = "&check;";
+  setTimeout(function() { document.getElementById(id).innerHTML = "$sym"; }, 2000)
+}
+</script>
+</head>
+<body>
+EOF
+
+dir=`pwd`
+
+let c=0
+for f in $list
+do
+    let c=$c+1
+    if [ -f "$dir/$f" ]
+    then
+        f="$dir/$f"
+    fi
+    t=`basename "$f"`
+    id="cc-$c"
+    cat - >> $tmpfile <<EOF
+<div class='thumbnail'>
+<a href="$f"><img src='$f' title='$t' height='300px' /></a><br/>
+$t <button id="$id" class="cc" onlick='copy("$id", "$t")'>$sym</button>
+</div>
+EOF
+    echo "$c $f"
+done
+
+cat - >> $tmpfile <<EOF
+</body>
+</html>
+EOF
+
+if [ -z "$rep" ]
+then
+    exec xdg-open "$tmpfile"
+fi
