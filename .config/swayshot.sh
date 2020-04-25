@@ -1,0 +1,2 @@
+export SWAYSHOT_SCREENSHOTS=/tmp
+export SWAYSHOT_DATEFMT=%Y%d%m-%H%M%S
