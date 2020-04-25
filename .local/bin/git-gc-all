@@ -1,0 +1,18 @@
+#!/bin/bash
+
+pushd () {
+    command pushd "$@" > /dev/null
+}
+
+popd () {
+    command popd "$@" > /dev/null
+}
+
+echo "git gc..."
+for g in `find . -name '.git' | sed -r 's|/[^/]+$||' |sort |uniq`
+do
+    pushd $g
+    echo "  $g"
+    git gc
+    popd
+done
