@@ -17,7 +17,15 @@ fi
 if ! grml_theme_has_token pwd
 then
   function pwd_prompt () {
-    REPLY="${$(basename `pwd`)%/}/ "
+    if [ "$(pwd)" = / ]
+    then
+      REPLY="/ "
+    elif [ "$(basename $(pwd))" = "${$(pwd)#/}" ]
+    then
+      REPLY="$(pwd)"
+    else
+      REPLY="//${$(basename `pwd`)%/} "
+    fi
   }
   grml_theme_add_token  pwd -f pwd_prompt '%B' '%b'
 fi
