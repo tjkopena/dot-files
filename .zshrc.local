@@ -6,6 +6,16 @@ alias emacs='emacsclient -nw -c -a ""'
 
 alias open='xdg-open'
 
+function venv() {
+  if [ -d venv/ ]
+  then
+    source venv/bin/activate
+  else
+    echo 'No venv found'
+    return 1
+  fi
+}
+
 if ! grml_theme_has_token virtual-env
 then
   function virtual_env_prompt () {
