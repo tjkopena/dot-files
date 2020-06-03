@@ -17,6 +17,7 @@ xwayland enable
 
 # Preferred Programs
 set $term         gnome-terminal
+set $term         swaycwd.sh
 set $browser      firefox-developer-edition
 
 # Application Launcher
