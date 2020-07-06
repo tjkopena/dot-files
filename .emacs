@@ -4,6 +4,8 @@
 ;;----------------------------------------------------------------------
 ;;----------------------------------------------------------------------
 
+; (add-to-list 'load-path "~/.emacs.d/lisp/")
+
 ;;----------------------------------------------
 ;;-- Auto-Saves
 
@@ -87,6 +89,11 @@
          ; in xterm-mouse-mode you have to Shift+RightClick to paste from the system
          ; clipboard (shift directs the click to the terminal emulator, not emacs)
 
+;(when (and (not window-system)
+;           (string-match "^xterm" (getenv "TERM")))
+;  (require 'xterm-title)
+;  (xterm-title-mode 1)
+;  (message "Set xterm-title-mode"))
 
 ;;----------------------------------------------
 ;;-- Keys and Mice
