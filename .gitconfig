@@ -3,3 +3,5 @@
 [core]
 	editor = emacsclient -nw -c -a \"\"
 	excludesfile = /home/joe/.gitignore
+[pull]
+	rebase = true
