@@ -15,6 +15,7 @@ function venv() {
     return 1
   fi
 }
+alias activate=venv
 
 if ! grml_theme_has_token virtual-env
 then
