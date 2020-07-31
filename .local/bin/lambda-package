@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+ZIP=$(pwd)/lambda_function.zip
+echo "Zipping to $ZIP"
+[ -e ${ZIP} ] && rm ${ZIP}
+
+for d in venv/lib/*
+do
+    echo "  $d"
+    pushd ${d}/site-packages
+    zip -r9 -g "$ZIP" .
+    popd
+done
+
+zip -g "$ZIP" lambda_function.py
