@@ -147,6 +147,7 @@
 ;(setq auto-mode-alist (cons '("\\.scss$" . css-mode) auto-mode-alist))
 
 (setq auto-mode-alist (cons '("\\.ts$" . javascript-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.tsx$" . javascript-mode) auto-mode-alist))
 (setq js-indent-level 2)
 
 ;(load "auctex.el" nil t t)
