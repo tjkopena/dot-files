@@ -3,6 +3,7 @@ alias urldecode='read -r t; echo -E $t | python3 -c "import urllib.parse; print(
 
 alias emacs_='/usr/bin/emacs'
 alias emacs='emacsclient -nw -c -a ""'
+alias emacs_kill='emacsclient -e "(kill-emacs)"'
 
 alias open='xdg-open'
 
