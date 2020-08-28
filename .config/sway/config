@@ -57,6 +57,8 @@ bar {
     #status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
     #status_command /home/joe/.local/bin/swaybar-status
 
+    strip_workspace_numbers yes
+
     colors {
         statusline #ffffff
         background #323232
@@ -64,6 +66,13 @@ bar {
     }
 }
 
+set $ws1   0:Home
+set $ws2   1:Primary
+set $ws3   2:Secondary
+set $ws4   3:Control
+set $ws5   4:Temp
+set $ws6   5:Temp
+set $ws10 10:Telecon
 
 #-----------------------------------------------------------------------
 # Idle Behavior
@@ -226,16 +235,22 @@ bindsym $code+p       focus parent
 bindsym $code+Shift+p focus child
 
 ## Switch to specific workspace
-bindsym $code+0 workspace 0
-bindsym $code+9 workspace 9
-bindsym $code+8 workspace 8
-bindsym $code+7 workspace 7
+bindsym $code+0 workspace $ws1
+bindsym $code+9 workspace $ws2
+bindsym $code+8 workspace $ws3
+bindsym $code+7 workspace $ws4
+bindsym $code+6 workspace $ws5
+bindsym $code+5 workspace $ws6
+bindsym $code+1 workspace $ws10
 
 ## Move focused container to workspace
-bindsym $code+Shift+0 move container to workspace 0
-bindsym $code+Shift+9 move container to workspace 9
-bindsym $code+Shift+8 move container to workspace 8
-bindsym $code+Shift+7 move container to workspace 7
+bindsym $code+Shift+0 move container to workspace $ws1
+bindsym $code+Shift+9 move container to workspace $ws2
+bindsym $code+Shift+8 move container to workspace $ws3
+bindsym $code+Shift+7 move container to workspace $ws4
+bindsym $code+Shift+6 move container to workspace $ws5
+bindsym $code+Shift+5 move container to workspace $ws6
+bindsym $code+Shift+1 move container to workspace $ws10
 
 ## Move workspaces on monitors
 bindsym $code+Shift+Left  workspace prev_on_output
