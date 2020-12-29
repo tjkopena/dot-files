@@ -73,6 +73,7 @@ set $ws4   3:Control
 set $ws5   4:Temp
 set $ws6   5:Temp
 set $ws11 11:Telecon
+set $ws12 12:Music
 
 #-----------------------------------------------------------------------
 # Idle Behavior
@@ -235,22 +236,24 @@ bindsym $code+p       focus parent
 bindsym $code+Shift+p focus child
 
 ## Switch to specific workspace
-bindsym $code+0           workspace $ws1
-bindsym $code+9           workspace $ws2
-bindsym $code+8           workspace $ws3
-bindsym $code+7           workspace $ws4
-bindsym $code+6           workspace $ws5
-bindsym $code+5           workspace $ws6
-bindsym $code+bracketleft workspace $ws11
+bindsym $code+0            workspace $ws1
+bindsym $code+9            workspace $ws2
+bindsym $code+8            workspace $ws3
+bindsym $code+7            workspace $ws4
+bindsym $code+6            workspace $ws5
+bindsym $code+5            workspace $ws6
+bindsym $code+bracketleft  workspace $ws11
+bindsym $code+bracketright workspace $ws12
 
 ## Move focused container to workspace
-bindsym $code+Shift+0   move container to workspace $ws1
-bindsym $code+Shift+9   move container to workspace $ws2
-bindsym $code+Shift+8   move container to workspace $ws3
-bindsym $code+Shift+7   move container to workspace $ws4
-bindsym $code+Shift+6   move container to workspace $ws5
-bindsym $code+Shift+5   move container to workspace $ws6
-bindsym $code+braceleft move container to workspace $ws11
+bindsym $code+Shift+0    move container to workspace $ws1
+bindsym $code+Shift+9    move container to workspace $ws2
+bindsym $code+Shift+8    move container to workspace $ws3
+bindsym $code+Shift+7    move container to workspace $ws4
+bindsym $code+Shift+6    move container to workspace $ws5
+bindsym $code+Shift+5    move container to workspace $ws6
+bindsym $code+braceleft  move container to workspace $ws11
+bindsym $code+braceright move container to workspace $ws12
 
 ## Move workspaces on monitors
 bindsym $code+Shift+Left  workspace prev_on_output
