@@ -1,0 +1,26 @@
+ReadTags = yes
+MusicDir = /home/joe/mp3s
+StartInMusicDir = yes
+PlaylistFullPaths = no
+
+SavePlaylist = yes
+
+#FollowPlayedFile = yes
+
+# Set playback toggles.
+#Repeat = no
+#Shuffle = no
+#AutoNext = yes
+
+# Default FormatString:
+#
+#   %n - Track number
+#   %a - Artist
+#   %A - Album
+#   %t - Title
+#   %(X:TRUE:FALSE) - Ternary expression: if X exists, do TRUE,
+#                     otherwise FALSE.  The escape character must
+#                     be doubled (i.e., '\\').  (See zshmisc
+#                     documentation for more information.)
+#
+#FormatString = "%(n:%n :)%(a:%a - :)%(t:%t:)%(A: \(%A\):)"
