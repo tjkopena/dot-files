@@ -3,9 +3,11 @@ alias urldecode='read -r t; echo -E $t | python3 -c "import urllib.parse; print(
 
 alias emacs_='/usr/bin/emacs'
 alias emacs='emacsclient -nw -c -a ""'
-alias emacs_kill='emacsclient -e "(kill-emacs)"'
+alias emacs-kill='emacsclient -e "(kill-emacs)"'
 
 alias open='xdg-open'
+
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 function venv() {
   if [ -d venv/ ]
