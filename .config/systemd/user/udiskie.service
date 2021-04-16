@@ -1,0 +1,8 @@
+[Unit]
+Description=udiskie - automount USB disks
+
+[Service]
+ExecStart=udiskie -F
+
+[Install]
+WantedBy=default.target

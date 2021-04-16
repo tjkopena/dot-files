@@ -1,0 +1,8 @@
+[Unit]
+Description=pulseaudio daemon
+
+[Service]
+ExecStart=pulseaudio
+
+[Install]
+WantedBy=default.target

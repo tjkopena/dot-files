@@ -4,7 +4,7 @@
 ;;----------------------------------------------------------------------
 ;;----------------------------------------------------------------------
 
-; (add-to-list 'load-path "~/.emacs.d/lisp/")
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 
 ;;----------------------------------------------
 ;;-- Auto-Saves
@@ -146,12 +146,17 @@
 ;(setq auto-mode-alist (cons '("\\.hx$" . java-mode) auto-mode-alist))
 ;(setq auto-mode-alist (cons '("\\.scss$" . css-mode) auto-mode-alist))
 
+(setq auto-mode-alist (cons '("\\.svg$" . xml-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.ino$" . c++-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.ts$" . javascript-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.tsx$" . javascript-mode) auto-mode-alist))
 (setq js-indent-level 2)
 
 ;(load "auctex.el" nil t t)
 ;(load "preview-latex.el" nil t t)
+
+(autoload 'scad-mode "scad-mode" "A major mode for editing OpenSCAD code." t)
+(add-to-list 'auto-mode-alist '("\\.scad$" . scad-mode))
 
 
 ;;----------------------------------------------

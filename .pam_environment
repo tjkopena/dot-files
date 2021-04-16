@@ -1,3 +1,5 @@
 PATH DEFAULT=/home/@{PAM_USER}/.local/bin
 MOZ_ENABLE_WAYLAND DEFAULT=1
 XDG_SESSION_TYPE=wayland
+OPENSCADPATH=/home/joe/rocketshipgames/rockets/openscad/
+_JAVA_AWT_WM_NONREPARENTING=1

@@ -347,7 +347,7 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
 
 # Float image previews
 for_window [app_id="imv"] floating enable
-
+for_window [app_id="stlviewer"] floating enable
 
 #-----------------------------------------------------------------------
 # Startup

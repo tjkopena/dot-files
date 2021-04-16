@@ -7,7 +7,7 @@ alias emacs-kill='emacsclient -e "(kill-emacs)"'
 
 alias open='xdg-open'
 
-export _JAVA_AWT_WM_NONREPARENTING=1
+alias eject='udiskie-umount -ade'
 
 function venv() {
   if [ -d venv/ ]
