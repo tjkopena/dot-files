@@ -9,6 +9,8 @@ alias open='xdg-open'
 
 alias eject='udiskie-umount -ade'
 
+alias bc='bc -l'
+
 function venv() {
   if [ -d venv/ ]
   then
