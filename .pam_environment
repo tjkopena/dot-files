@@ -3,3 +3,5 @@ MOZ_ENABLE_WAYLAND DEFAULT=1
 XDG_SESSION_TYPE=wayland
 OPENSCADPATH=/home/joe/rocketshipgames/rockets/openscad/
 _JAVA_AWT_WM_NONREPARENTING=1
+QT_QPA_PLATFORM=xcb
+QT_PLUGIN_PATH=/usr/lib/qt/plugins
