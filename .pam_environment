@@ -5,3 +5,4 @@ OPENSCADPATH=/home/joe/rocketshipgames/rockets/openscad/
 _JAVA_AWT_WM_NONREPARENTING=1
 QT_QPA_PLATFORM=xcb
 QT_PLUGIN_PATH=/usr/lib/qt/plugins
+LIBSEAT_BACKEND=logind
