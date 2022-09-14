@@ -1,0 +1,6 @@
+#!env bash
+
+export QT_QPA_PLATFORM=xcb
+export QT_PLUGIN_PATH=/usr/lib/qt/plugins
+
+/opt/LightBurn/LightBurn

@@ -1,0 +1,12 @@
+#!bash
+
+fn=$1
+if [ -z "$fn" ]
+then
+    echo "Must specify input"
+    exit 1
+fi
+
+fnn=$(echo "${fn}" | cut -f -1 -d '.' ).mp3
+
+ffmpeg -i "${fn}" -acodec libmp3lame -q:a 3 "${fnn}"

@@ -3,7 +3,7 @@
 [core]
 	editor = emacsclient -nw -c -a \"\"
 	excludesfile = /home/joe/.gitignore
-[pull]
-	rebase = true
 [init]
 	defaultBranch = main
+[pull]
+	rebase = false
