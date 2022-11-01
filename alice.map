@@ -1,0 +1,8 @@
+include "/usr/lib/kbd/keymaps/legacy/i386/dvorak/dvorak.map.gz"
+keycode 58 = Control
+keycode 102 = PageUp
+keycode 104 = Home
+keycode 107 = PageDown
+keycode 109 = End
+shift keycode 102 = Scroll_Backward
+shift keycode 107 = Scroll_Forward
